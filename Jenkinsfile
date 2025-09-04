@@ -1,6 +1,10 @@
 pipeline {
     agent any
 
+    tools {
+        maven 'Maven' // Must match the name in Jenkins Global Tool Configuration
+    }
+
     environment {
         DOCKER_IMAGE = 'wasaththeekshana/student-api:latest'
         DOCKER_CREDENTIALS = 'jenkeins-docker-access-token' // Jenkins credentials ID
