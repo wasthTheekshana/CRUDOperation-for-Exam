@@ -9,7 +9,7 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                git 'https://github.com/yourname/student-api.git'
+                git 'https://github.com/wasthTheekshana/CRUDOperation-for-Exam.git'
             }
         }
 
