@@ -28,7 +28,7 @@ pipeline {
         stage('Build Docker Image') {
             steps {
                 bat 'docker build -t student-api .'
-                bat 'docker tag student-api $DOCKER_IMAGE'
+                bat 'docker tag student-api $DOCKER_IMAGE%'
             }
         }
 
@@ -39,8 +39,8 @@ pipeline {
                     passwordVariable: 'DOCKER_PASSWORD',
                     usernameVariable: 'DOCKER_USERNAME'
                 )]) {
-                    bat 'echo $DOCKER_PASSWORD | docker login -u $DOCKER_USERNAME --password-stdin docker.io'
-                    bat 'docker push $DOCKER_IMAGE'
+                    bat 'echo $DOCKER_PASSWORD% | docker login -u $DOCKER_USERNAME% --password-stdin docker.io'
+                    bat 'docker push $DOCKER_IMAGE%'
                 }
             }
         }
