@@ -9,9 +9,11 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                git 'https://github.com/wasthTheekshana/CRUDOperation-for-Exam.git'
+                git branch: 'main',
+                    url: 'https://github.com/wasthTheekshana/CRUDOperation-for-Exam.git'
             }
         }
+
 
         stage('Build JAR with Maven') {
             steps {
