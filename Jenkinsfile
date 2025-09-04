@@ -15,14 +15,14 @@ pipeline {
 
         stage('Build JAR with Maven') {
             steps {
-                sh 'mvn clean package -DskipTests'
+                bat 'mvn clean package -DskipTests'
             }
         }
 
         stage('Build Docker Image') {
             steps {
-                sh 'docker build -t student-api .'
-                sh 'docker tag student-api $DOCKER_IMAGE'
+                bat 'docker build -t student-api .'
+                bat 'docker tag student-api $DOCKER_IMAGE'
             }
         }
 
@@ -33,8 +33,8 @@ pipeline {
                     passwordVariable: 'DOCKER_PASSWORD',
                     usernameVariable: 'DOCKER_USERNAME'
                 )]) {
-                    sh 'echo $DOCKER_PASSWORD | docker login -u $DOCKER_USERNAME --password-stdin docker.io'
-                    sh 'docker push $DOCKER_IMAGE'
+                    bat 'echo $DOCKER_PASSWORD | docker login -u $DOCKER_USERNAME --password-stdin docker.io'
+                    bat 'docker push $DOCKER_IMAGE'
                 }
             }
         }
@@ -42,7 +42,7 @@ pipeline {
 
     post {
         always {
-            sh 'docker logout'
+            bat 'docker logout'
         }
     }
 }
